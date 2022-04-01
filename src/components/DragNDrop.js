@@ -12,14 +12,12 @@ const DragNDrop = () => {
         const exist = board.findIndex(img => img.id === ID);
 
         console.log(exist, newItem);
-
-        if( exist === -1) {
+        console.log(board)
+        if( exist < 0 ) {
             setBoard(board => [
                 ...board,
                 newItem
             ]);
-        }else{
-            return null;
         }
     }
     const [{isOver}, drop] = useDrop(() => ({
