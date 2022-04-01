@@ -7,13 +7,18 @@ import imgs from '../imgDATA';
 const DragNDrop = () => {
     const [board, setBoard] = useState([]);
 
+    let ids = [];
     const addImgToBoard = ID =>{
         const newItem = imgs.filter(img => img.id === ID)[0];
-            setBoard(board => [
-                ...board,
-                newItem
-            ]);
+        if(ids.includes(ID)) return;
+        setBoard(board => [
+            ...board,
+            newItem
+        ]);
+        ids = [...ids, ID];
     }
+
+    console.log(board);
 
     const [{isOver}, drop] = useDrop(() => ({
         accept:'image',
