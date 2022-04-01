@@ -7,7 +7,7 @@ USAGE:
                 <DndProvider  backend={HTML5Backend}>
 
             </DndProvider>
-        - elements that should be dragged:
+        - elements that should be dragged: DraggableImg
                 import { useDrag } from 'react-dnd'
 
                 const [{isDragging}, drag] = useDrag(()=>({
@@ -19,7 +19,7 @@ USAGE:
                         isDragging:!!monitor.isDragging(),
                         })
                 }));
-                <div  ref={drag}>.....</div> // this is the draggable element
+                <DraggableImg  ref={drag}>.....</DraggableImg> // this is the draggable element
         - place where they shoud be dropped:
                 import { useDrop } from 'react-dnd'
                 const [droppedList, setDroppedList] = useState(); // store the dropped items
@@ -30,10 +30,10 @@ USAGE:
                         isOver:!!monitor.isOver(),
                         })
                 }))
-                        <div className='board' ref={drop}>
-                {
-                    board.map(img =>(
-                        <DraggableImg url={img.url} key={img.id} id={img.id}/>
-                    ))
-                }
+                <div className='board' ref={drop}>
+                        {
+                        droppedList.map(img =>(
+                                <DraggableImg url={img.url} key={img.id} id={img.id}/>
+                        ))
+                        }
                 </div>
