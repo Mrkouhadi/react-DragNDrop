@@ -8,18 +8,13 @@ const DragNDrop = () => {
     const [board, setBoard] = useState([]);
 
     const addImgToBoard = ID =>{
-        const newItem = imgs.find(img => img.id === ID);
-        const exist = board.findIndex(img => img.id === ID);
-
-        console.log(exist, newItem);
-        console.log(board)
-        if( exist < 0 ) {
+        const newItem = imgs.filter(img => img.id === ID)[0];
             setBoard(board => [
                 ...board,
                 newItem
             ]);
-        }
     }
+
     const [{isOver}, drop] = useDrop(() => ({
         accept:'image',
         drop:item=> addImgToBoard(item.id),
