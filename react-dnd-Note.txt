@@ -1,3 +1,39 @@
 SET UP:
         npm install react-dnd react-dnd-html5-backend
 USAGE:
+        - wrap the app js with :
+                import { HTML5Backend } from 'react-dnd-html5-backend'
+                import { DndProvider } from 'react-dnd'
+                <DndProvider  backend={HTML5Backend}>
+
+            </DndProvider>
+        - elements that should be dragged:
+                import { useDrag } from 'react-dnd'
+
+                const [{isDragging}, drag] = useDrag(()=>({
+                        type:'image',
+                        item:{  // we can more things into the item object
+                        id:id
+                        }, 
+                        collect:(monitor) =>({
+                        isDragging:!!monitor.isDragging(),
+                        })
+                }));
+                <div  ref={drag}>.....</div> // this is the draggable element
+        - place where they shoud be dropped:
+                import { useDrop } from 'react-dnd'
+                const [droppedList, setDroppedList] = useState(); // store the dropped items
+                const [{isOver}, drop] = useDrop(() => ({
+                        accept:'image',
+                        drop:item=> setDroppedList(droppedList => [...droppedList, {id:item.id, blabla}),
+                        collect:(monitor) =>({
+                        isOver:!!monitor.isOver(),
+                        })
+                }))
+                        <div className='board' ref={drop}>
+                {
+                    board.map(img =>(
+                        <DraggableImg url={img.url} key={img.id} id={img.id}/>
+                    ))
+                }
+                </div>

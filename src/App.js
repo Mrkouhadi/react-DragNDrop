@@ -6,7 +6,7 @@ import DragNDrop from "./components/DragNDrop";
 
 function App() {
   return (
-    <DndProvider debugMode={true} backend={HTML5Backend}>
+    <DndProvider backend={HTML5Backend}>
       <div className="app">
         <DragNDrop />
       </div>
