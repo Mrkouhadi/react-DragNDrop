@@ -14,7 +14,7 @@ const DraggableImg = ({url, id}) => {
 
 
   return <img className='img' src={url}
-              style={{border:isDragging ? "4px solid pink" : "0px"}}
+              style={{opacity:isDragging ? .2: 1}}
               ref={drag}
          />
 }
