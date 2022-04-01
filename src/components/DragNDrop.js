@@ -38,7 +38,6 @@ const DragNDrop = () => {
                         <DraggableImg url={img.url} key={img.id} id={img.id}/>
                     ))
                 }
-                {board.length}
         </div>
     </>
   )
