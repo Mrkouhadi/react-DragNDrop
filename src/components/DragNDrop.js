@@ -1,24 +1,26 @@
 import React, { useState } from 'react'
 import DraggableImg from './DraggableImg';
 import { useDrop } from 'react-dnd'
+import imgs from '../imgDATA';
 
-const imgs = [
-    {id:0, url:'https://picsum.photos/id/44/400/300'},
-    {id:1, url:'https://picsum.photos/id/111/400/300'},
-    {id:2, url:'https://picsum.photos/id/122/400/300'},
-    {id:3, url:'https://picsum.photos/id/309/400/300'},
-    {id:4, url:'https://picsum.photos/id/139/400/300'},
-];
 
 const DragNDrop = () => {
-    const [board, setBoard] = useState([])
+    const [board, setBoard] = useState([]);
 
     const addImgToBoard = ID =>{
-        const newItem = imgs.filter(img => img.id === ID)[0];
-        setBoard(board => [
-            ...board,
-            newItem
-        ]);
+        const newItem = imgs.find(img => img.id === ID);
+        const exist = board.findIndex(img => img.id === ID);
+
+        console.log(exist, newItem);
+
+        if( exist === -1) {
+            setBoard(board => [
+                ...board,
+                newItem
+            ]);
+        }else{
+            return null;
+        }
     }
     const [{isOver}, drop] = useDrop(() => ({
         accept:'image',
