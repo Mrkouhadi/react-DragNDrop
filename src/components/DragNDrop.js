@@ -36,7 +36,7 @@ const DragNDrop = () => {
                 ))
             }
         </div>
-        <div className='board' ref={drop} style={{backgroundColor:isOver && "#dcdcdc"}}>
+        <div className='board' ref={drop} style={{backgroundColor:isOver ? "#c0c0c0" : "#FFC0CB"}}>
                 {
                     board.map(img =>(
                         <DraggableImg url={img.url} key={img.id} id={img.id}/>
